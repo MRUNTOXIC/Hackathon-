@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e3b2dfd-f15a-4c91-92e1-9074fc1a5290" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dashboard-ui-details.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/attendance/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/participants/[id]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/participants/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/participants/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/stats/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hackathon-dashboard/app/api/admin/stats/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hackathon-dashboard/lib/backend/controllers/adminController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hackathon-dashboard/lib/backend/controllers/adminController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/judge-web-app/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/judge-web-app/next.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3HAzd6dhkvFBuJqFnw1BVoH9fLg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;implementationPlan.dismissed.f45d1a86-1442-4bfd-9e34-0e8c558cfb0e&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/meetjobanputra/Desktop/hackathon-try/judge-web-app/public/icons&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/judge-web-app/public/icons" />
+      <recent name="$PROJECT_DIR$/hackathon-website/public" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e3b2dfd-f15a-4c91-92e1-9074fc1a5290" name="Changes" comment="" />
+      <created>1785325745519</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1785325745519</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ts" />
+  </component>
+</project>
