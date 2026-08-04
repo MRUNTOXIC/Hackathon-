@@ -8,8 +8,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "ASTRA | The Next Frontier Hackathon",
-  description: "Join the most ambitious 12-hour space-tech hackathon. Build the future of orbital operations.",
+  title: "Commit Code | 24-Hour Hackathon",
+  description: "Join the most ambitious 24-hour space-tech hackathon. Build the future of orbital operations.",
   icons: {
     icon: '/vercel.svg',
   },

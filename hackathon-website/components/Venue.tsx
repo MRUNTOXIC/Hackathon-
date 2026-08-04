@@ -255,7 +255,7 @@ export default function Venue() {
                   background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: 8, padding: "12px 16px", textAlign: "center",
                 }}>
-                  ASTRA-2026-RAJKOT
+                  COMMIT CODE-2026-RAJKOT
                 </div>
               </div>
             </motion.div>

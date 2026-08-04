@@ -84,7 +84,7 @@ export default function Navbar({ show, onRegisterClick }: { show: boolean; onReg
         <div className="flex-1 flex justify-start items-center">
           <a href="#home" className="group" onClick={() => setMenuOpen(false)}>
             <span className="text-[18px] font-black tracking-[6px] text-white transition-opacity duration-300 group-hover:opacity-80">
-              ASTRA
+              Commit Code
             </span>
           </a>
         </div>

@@ -206,7 +206,7 @@ export default function Hero({
               WebkitTextFillColor: "transparent",
             }}
           >
-            THE NEXT<br />FRONTIER
+          COMMIT<br />CODE
           </motion.h1>
         </div>
 
@@ -217,7 +217,7 @@ export default function Hero({
           transition={{ duration: 1, delay: 1.1 }}
           className="text-[16px] md:text-[20px] tracking-[0.25em] text-[#80c8ff] font-medium uppercase mb-16 font-orbitron"
         >
-          48 HOURS. INFINITE POSSIBILITIES.
+          24 HOURS. INFINITE POSSIBILITIES.
         </motion.p>
 
         {/* Countdown */}

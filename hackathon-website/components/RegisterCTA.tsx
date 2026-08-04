@@ -70,7 +70,7 @@ export default function RegisterCTA({ onRegisterClick }: { onRegisterClick: () =
       <motion.p className="text-[16px] md:text-[20px] tracking-[0.25em] text-[#80c8ff] font-medium uppercase mb-16 font-orbitron text-center max-w-2xl leading-relaxed px-4"
         initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         transition={{ delay: 0.4 }}>
-        SECURE YOUR SEAT ON THE NEXT FRONTIER.<br />
+        SECURE YOUR SEAT AT COMMIT CODE.<br />
         APPLICATIONS CLOSING SOON.
       </motion.p>
 
@@ -99,7 +99,7 @@ export default function RegisterCTA({ onRegisterClick }: { onRegisterClick: () =
       >
         <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
         <p className="text-[9px] tracking-[6px] text-white/10 uppercase">
-          © 2026 ASTRA HACKATHON · FINAL TRANSMISSION
+          © 2026 COMMIT CODE HACKATHON · FINAL TRANSMISSION
         </p>
       </motion.div>
     </section>

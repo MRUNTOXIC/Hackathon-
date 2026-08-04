@@ -1,0 +1,59 @@
+HACKATHON DASHBOARD COMPREHENSIVE UI STUDY
+
+--- 1. CORE DESIGN SYSTEM ---
+A. THEME & PALETTE:
+   - Primary: #050816 (Deep Midnight Background)
+   - Accents:
+      * Cyan-400 (#22D3EE): Leadership, primary actions, core branding.
+      * Blue-600 (#2563EB): Depth, secondary buttons, gradient fades.
+      * Purple-500 (#A855F7): Intellectual/Judging focus, technical stats.
+      * Emerald-500 (#10B981): Success, low priority, active status.
+   - Typography: Orbitron (Headings), Inter/Sans-serif (Body).
+
+B. COMPONENT ARCHITECTURE:
+   - GlassCard: Frosted effect with `backdrop-blur-xl`. 1px white/10 border.
+   - Gradients: Heavy use of `from-cyan-500/10 to-blue-600/10` for card backgrounds.
+   - Animations: Staggered `framer-motion` entrances for all grid items.
+
+--- 2. STUDENT DASHBOARD INTERFACE ---
+A. MAIN OVERVIEW:
+   - Welcome Beacon: Large card displaying Name, Role, and initial avatar.
+   - Mission Telemetry (Stats): 4-card grid showing Team Name, ID, Track, and Size.
+   - Team Manifest: Vertical list with "Leader" badges and hover-active member cards.
+   - Judging Portal: Double-column layout for Round 1 & Round 2 feedback.
+   - Comms Link: Vertical announcement stack with priority-based color coding.
+
+B. TEAM MANAGEMENT:
+   - Info Hub: Horizontal summary of team metadata.
+   - Member Roster: List with "Remove" capabilities for leaders.
+   - Uplink (Invites): Inline email form with real-time validation for adding members.
+
+C. SECURITY (INTERNET PASSWORDS):
+   - Hidden-by-default credentials with a password-locked "Reveal" protocol.
+   - Copy-to-clipboard functionality for ease of use during the hack.
+
+--- 3. ADMIN CONTROL CENTER ---
+A. COMMAND HUB (STATS):
+   - High-level telemetry for total Users, Teams, Leaders, and Members.
+   - Dynamic refreshing every 60s to ensure live data.
+
+B. OPERATIONS PANELS:
+   - Participant Manifest: searchable, filterable list of all registered entities.
+   - Team Directory: Detailed view of all registered groups.
+   - Announcement Uplink: Form for pushing high-priority updates to all students.
+   - Attendance Scanner: Interface for marking physical presence at the venue.
+
+--- 4. AUTHENTICATION PROTOCOLS ---
+A. LANDING / LOGIN:
+   - Clean, centered interface with floating "Shield" or "Crown" icons.
+   - Glassmorphic forms with real-time error feedback in red glass boxes.
+
+B. REGISTRATION (LEADER vs MEMBER):
+   - Multi-step forms for Name, Reg No, Email, Phone, Dept, and Password.
+   - Leader-specific: Team Name and Track selection.
+   - Member-specific: Role explanation box.
+
+--- 5. MOBILE & RESPONSIVENESS ---
+- Adaptive Grids: 4-cols (Desktop) -> 2-cols (Tablet) -> 1-col (Phone).
+- Navigation: Desktop Navbar -> Mobile Drawer Sidebar with blurred background.
+- Typography: Uses `clamp()` logic to ensure readability on small screens.
