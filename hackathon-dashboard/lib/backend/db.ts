@@ -48,13 +48,21 @@ async function connectDB() {
     const opts = {
       bufferCommands: false,
       dbName: process.env.MONGO_DB || 'hackathonDB',
-      serverSelectionTimeoutMS: 15000,
+      serverSelectionTimeoutMS: 5000, // Reduced from 15s to 5s for better responsiveness
+      heartbeatFrequencyMS: 10000,
+      socketTimeoutMS: 30000,
+      maxPoolSize: 10,
+      minPoolSize: 2,
     };
 
     console.log('Connecting to MongoDB Atlas...');
     cached.promise = mongoose.connect(MONGO_URI, opts).then((mongooseInstance) => {
       console.log(`MongoDB connected: ${mongooseInstance.connection.host} (db: ${mongooseInstance.connection.name})`);
       return mongooseInstance;
+    }).catch((err) => {
+      console.error('Mongoose connection error:', err.message);
+      cached.promise = null; // Reset promise so we can retry on next request
+      throw err;
     });
   }
 

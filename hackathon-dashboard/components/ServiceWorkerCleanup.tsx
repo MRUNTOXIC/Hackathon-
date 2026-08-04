@@ -15,8 +15,7 @@ export default function ServiceWorkerCleanup() {
           registration.unregister().then((success) => {
             if (success) {
               console.log('Successfully unregistered "ghost" Service Worker');
-              // Optionally reload to ensure clean state
-              window.location.reload();
+              // Removed window.location.reload() to prevent infinite reload loops
             }
           });
         }

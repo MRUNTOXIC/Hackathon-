@@ -10,6 +10,6 @@ export async function GET(req: NextRequest) {
     const data = await getInvitations(user._id);
     return NextResponse.json(data);
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json([]);
   }
 }

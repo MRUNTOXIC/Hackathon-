@@ -36,41 +36,28 @@ export const getStats = async () => {
 export const getAllParticipants = async () => {
   const users = await User.find({})
     .select('-password')
-    .populate('teamId', 'teamName teamNumber projectTrack');
+    .populate('teamId', 'teamName teamNumber projectTrack problemStatement');
   return users;
 };
 
 export const getAllTeams = async () => {
   const teams = await Team.find({})
     .populate('leaderId', 'name email registrationNumber')
-    .populate('members', 'name email registrationNumber department');
+    .populate('members', 'name email registrationNumber department')
+    .sort({ createdAt: -1 });
   return teams;
 };
 
 export const getParticipantById = async (id: string) => {
   const user = await User.findById(id)
     .select('-password')
-    .populate('teamId', 'teamName teamNumber projectTrack');
+    .populate('teamId', 'teamName teamNumber projectTrack problemStatement');
   if (!user) throw new Error('Participant not found');
 
   const Attendance = mongoose.models.Attendance || mongoose.model('Attendance');
   const attendance = await Attendance.find({ user: id });
 
   return { user, attendance };
-};
-
-export const markAttendance = async (body: any) => {
-  const { userId, round, status } = body;
-  if (!userId || !round) throw new Error('Missing fields');
-
-  const Attendance = mongoose.models.Attendance || mongoose.model('Attendance');
-  const attendance = await Attendance.findOneAndUpdate(
-    { user: userId, round },
-    { status: status || 'present' },
-    { upsert: true, new: true }
-  );
-
-  return { ok: true, attendance };
 };
 
 export const uploadPasswords = async (body: any) => {

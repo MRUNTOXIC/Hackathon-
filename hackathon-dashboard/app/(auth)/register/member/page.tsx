@@ -13,7 +13,7 @@ import { Users } from 'lucide-react';
 
 const schema = z.object({
   name: z.string().min(2, 'Name required'),
-  registrationNumber: z.string().length(9, 'Registration number must be exactly 9 digits').regex(/^\d{9}$/, 'Only digits allowed'),
+  registrationNumber: z.string().length(11, 'Registration number must be exactly 11 digits').regex(/^\d{11}$/, 'Only digits allowed'),
   email: z.string().email('Valid email required'),
   phone: z.string().min(10, 'Valid phone required'),
   department: z.string().min(2, 'Department required'),
@@ -76,7 +76,7 @@ export default function RegisterMemberPage() {
         >
           <div className="grid grid-cols-2 gap-4">
             <Input label="Full Name" placeholder="Jane Doe" error={errors.name?.message} {...register('name')} />
-            <Input label="Registration No." placeholder="240102107" error={errors.registrationNumber?.message} {...register('registrationNumber')} />
+            <Input label="Registration No." placeholder="16219424088" error={errors.registrationNumber?.message} {...register('registrationNumber')} />
           </div>
           <Input label="College Email" type="email" placeholder="jane@college.edu" error={errors.email?.message} {...register('email')} />
           <Input label="Phone Number" placeholder="+91 9876543210" error={errors.phone?.message} {...register('phone')} />

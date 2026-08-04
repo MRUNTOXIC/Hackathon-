@@ -4,12 +4,7 @@ import { registerLeader } from '@/lib/backend/controllers/authController';
 
 export async function POST(req: NextRequest) {
   try {
-    try {
-      await connectDB();
-    } catch (error: any) {
-      console.warn('MongoDB unavailable, using fallback auth store:', error?.message || error);
-    }
-
+    await connectDB();
     const body = await req.json();
     const result = await registerLeader(body);
 

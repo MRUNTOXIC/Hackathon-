@@ -25,6 +25,11 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const checkAdmin = async () => {
+      // Add a safety timeout
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Admin check timeout')), 8000)
+      );
+
       try {
         const cached = localStorage.getItem(CACHE_KEY);
         if (cached) {
@@ -35,14 +40,21 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         const token = getAdminToken();
         if (token) {
           // Verify token validity with a simple stats call
-          await api.get('/admin/stats', {
-            headers: { Authorization: `Bearer ${token}` }
-          });
+          await Promise.race([
+            api.get('/admin/stats', {
+              headers: { Authorization: `Bearer ${token}` }
+            }),
+            timeout
+          ]);
         } else {
           setAndCache(null);
         }
-      } catch (err) {
-        // Only clear if it's an auth failure
+      } catch (err: any) {
+        console.warn('Admin check failed or timed out:', err.message);
+        // If auth failure, clear cache
+        if (err.response?.status === 401) {
+          setAndCache(null);
+        }
       } finally {
         setLoading(false);
       }

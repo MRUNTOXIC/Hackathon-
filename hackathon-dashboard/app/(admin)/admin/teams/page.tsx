@@ -52,8 +52,17 @@ export default function TeamsPage() {
               </button>
 
               {expanded === team._id && (
-                <div className="px-5 pb-5 border-t border-white/5 pt-4 space-y-2">
-                  {team.members.map((m: any) => (
+                <div className="px-5 pb-5 border-t border-white/5 pt-4 space-y-4">
+                  <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10">
+                    <p className="text-[10px] uppercase font-bold text-cyan-400 tracking-widest mb-1.5">Problem Statement</p>
+                    <p className="text-sm text-slate-300 leading-relaxed italic">
+                      {team.problemStatement ? `"${team.problemStatement}"` : "No problem statement provided."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-[10px] uppercase font-bold text-slate-500 tracking-widest ml-1">Team Members</p>
+                    {team.members.map((m: any) => (
                     <div key={m._id} className="flex items-center gap-3 p-3 rounded-xl bg-white/3">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-xs font-bold">
                         {m.name[0].toUpperCase()}
@@ -69,6 +78,7 @@ export default function TeamsPage() {
                       )}
                     </div>
                   ))}
+                  </div>
                 </div>
               )}
             </div>

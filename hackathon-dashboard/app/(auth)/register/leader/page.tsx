@@ -13,13 +13,14 @@ import { Crown } from 'lucide-react';
 
 const schema = z.object({
   name: z.string().min(2, 'Name required'),
-  registrationNumber: z.string().length(9, 'Registration number must be exactly 9 digits').regex(/^\d{9}$/, 'Only digits allowed'),
+  registrationNumber: z.string().length(11, 'Registration number must be exactly 11 digits').regex(/^\d{11}$/, 'Only digits allowed'),
   email: z.string().email('Valid email required'),
   phone: z.string().min(10, 'Valid phone required'),
   password: z.string().min(6, 'Min 6 characters'),
   confirmPassword: z.string(),
   teamName: z.string().min(2, 'Team name required'),
   projectTrack: z.string().min(2, 'Project track required'),
+  problemStatement: z.string().min(20, 'Please describe in at least 2 sentences (min 20 characters)'),
   department: z.string().min(2, 'Department required'),
 }).refine((d) => d.password === d.confirmPassword, {
   message: "Passwords don't match",
@@ -82,7 +83,7 @@ export default function RegisterLeaderPage() {
         >
           <div className="grid grid-cols-2 gap-4">
             <Input label="Full Name" placeholder="John Doe" error={errors.name?.message} {...register('name')} />
-            <Input label="Registration No." placeholder="240102107" error={errors.registrationNumber?.message} {...register('registrationNumber')} />
+            <Input label="Registration No." placeholder="16219424088" error={errors.registrationNumber?.message} {...register('registrationNumber')} />
           </div>
           <Input label="College Email" type="email" placeholder="john@college.edu" error={errors.email?.message} {...register('email')} />
           <Input label="Phone Number" placeholder="+91 9876543210" error={errors.phone?.message} {...register('phone')} />
@@ -103,6 +104,18 @@ export default function RegisterLeaderPage() {
             </select>
             {errors.projectTrack && <p className="text-xs text-red-400">{errors.projectTrack.message}</p>}
           </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm text-slate-400 font-medium">Problem Statement</label>
+            <textarea
+              {...register('problemStatement')}
+              placeholder="Describe your project problem statement in at least 2 sentences..."
+              rows={3}
+              className={`bg-white/5 border ${errors.problemStatement ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 focus:bg-white/8 transition-all resize-none`}
+            />
+            {errors.problemStatement && <p className="text-xs text-red-400">{errors.problemStatement.message}</p>}
+          </div>
+
           {error && <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-2">{error}</p>}
           <Button type="submit" loading={isSubmitting} className="w-full mt-2">Create Team & Register</Button>
         </form>

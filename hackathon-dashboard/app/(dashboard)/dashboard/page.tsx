@@ -6,7 +6,7 @@ import { Team, Announcement, JudgeScore, Invitation } from '@/types';
 import Navbar from '@/components/Navbar';
 import GlassCard from '@/components/ui/GlassCard';
 import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
-import { Users, Hash, Cpu, Trophy, Bell, Clock, Star, MessageSquare, Mail, UserPlus } from 'lucide-react';
+import { Users, Hash, Cpu, Trophy, Bell, Clock, Star, MessageSquare, Mail, UserPlus, X } from 'lucide-react';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -64,6 +64,21 @@ export default function DashboardPage() {
           </div>
         </GlassCard>
 
+        {/* Problem Statement Quick View */}
+        {team?.problemStatement && (
+          <div className="animate-fadein">
+            <div className="p-5 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 relative overflow-hidden group">
+               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                 <MessageSquare className="w-16 h-16 text-cyan-400" />
+               </div>
+               <div className="relative z-10">
+                 <p className="text-[10px] uppercase font-bold text-cyan-400 tracking-widest mb-2">Project Problem Statement</p>
+                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed italic">"{team.problemStatement}"</p>
+               </div>
+            </div>
+          </div>
+        )}
+
         {/* Stats */}
         {loading ? (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -91,6 +106,19 @@ export default function DashboardPage() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Project Overview */}
+          {team?.problemStatement && (
+            <GlassCard delay={0.15} className="lg:col-span-2 bg-cyan-500/5 border-cyan-500/20">
+              <div className="flex items-center gap-2 mb-3">
+                <MessageSquare className="w-5 h-5 text-cyan-400" />
+                <h3 className="font-semibold text-white">Project Problem Statement</h3>
+              </div>
+              <p className="text-slate-300 leading-relaxed italic sm:text-lg">
+                "{team.problemStatement}"
+              </p>
+            </GlassCard>
+          )}
+
           {/* Team Members */}
           <GlassCard delay={0.2}>
             <div className="flex items-center justify-between mb-4">

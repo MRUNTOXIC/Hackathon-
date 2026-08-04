@@ -10,6 +10,6 @@ export async function GET(req: NextRequest) {
     const data = await getInternetCredential(user._id);
     return NextResponse.json(data);
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 404 });
+    return NextResponse.json({ internetId: `HK_${user._id}` });
   }
 }

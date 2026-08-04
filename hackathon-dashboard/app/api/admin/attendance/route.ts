@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuthAdmin } from '@/lib/backend/auth';
-import { markAttendance } from '@/lib/backend/controllers/adminController';
+import { markAttendance } from '@/lib/backend/controllers/attendanceController';
 
 export async function POST(req: NextRequest) {
   try {

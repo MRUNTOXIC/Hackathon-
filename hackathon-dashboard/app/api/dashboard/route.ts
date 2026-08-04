@@ -10,6 +10,12 @@ export async function GET(req: NextRequest) {
     const data = await getDashboard(user._id);
     return NextResponse.json(data);
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json({
+      user: user || null,
+      team: null,
+      judgeScores: [],
+      pendingInvitations: [],
+      incomingInvitations: [],
+    });
   }
 }

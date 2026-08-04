@@ -7,6 +7,7 @@ const teamSchema = new mongoose.Schema(
     leaderId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     projectTrack: { type: String, required: true },
+    problemStatement: { type: String, required: true },
     department: { type: String, default: '' },
     status: { type: String, enum: ['active', 'submitted', 'disqualified'], default: 'active' },
   },

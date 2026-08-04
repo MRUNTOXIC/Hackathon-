@@ -10,27 +10,30 @@ export async function getAuthUser(req: NextRequest) {
 
   if (!token) return null;
 
-  let decoded: { id: string } | null = null;
+  let decoded: { id: string; user?: any } | null = null;
 
   try {
-    decoded = jwt.verify(token, JWT_SECRET) as { id: string };
+    decoded = jwt.verify(token, JWT_SECRET) as { id: string; user?: any };
   } catch (err) {
     return null;
   }
 
+  // Attempt to fetch fresh user data from DB first
   try {
     await connectDB();
+    const user = await User.findById(decoded.id).select('-password');
+    if (user) return user;
   } catch (error: any) {
-    console.warn('Database unavailable while resolving auth user, using fallback store:', error?.message || error);
-    return findFallbackUserById(decoded.id);
+    console.warn('Database fetch failed, using fallback from token:', error?.message || error);
   }
 
-  try {
-    const user = await User.findById(decoded.id).select('-password');
-    return user;
-  } catch (err) {
-    return null;
+  // Fallback to token-cached user if DB is down or user not found in DB
+  if (decoded.user) {
+    return decoded.user;
   }
+
+  // Last resort: check memory-only fallback store
+  return findFallbackUserById(decoded.id);
 }
 
 export async function getAuthAdmin(req: NextRequest) {

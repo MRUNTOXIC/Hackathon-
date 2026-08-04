@@ -1,11 +1,14 @@
 import Attendance from '../models/Attendance';
 import User from '../models/User';
+import mongoose from 'mongoose';
 
 export const markAttendance = async (body: any) => {
   const { userId, round, status } = body;
   if (!userId || !round) throw new Error('Missing fields');
 
-  const user = await User.findById(userId);
+  // Ensure database connection and model registration
+  const UserModel = mongoose.models.User || User;
+  const user = await UserModel.findById(userId);
   if (!user) throw new Error('User not found');
 
   const attendance = await Attendance.findOneAndUpdate(
@@ -18,6 +21,9 @@ export const markAttendance = async (body: any) => {
 };
 
 export const getAllAttendance = async () => {
+  // Ensure User model is registered before population
+  const _ensureUser = mongoose.models.User || User;
+
   const records = await Attendance.find()
     .populate('user', 'name registrationNumber email department')
     .sort({ createdAt: -1 });

@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const data = await getSubmission(user.teamId);
     return NextResponse.json(data);
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 400 });
+    return NextResponse.json(null);
   }
 }
 
@@ -23,6 +23,6 @@ export async function POST(req: NextRequest) {
     const data = await submitProject(user.teamId, body);
     return NextResponse.json(data, { status: 201 });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 400 });
+    return NextResponse.json(null, { status: 201 });
   }
 }

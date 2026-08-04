@@ -10,6 +10,6 @@ export async function GET(req: NextRequest) {
     const data = await getTeam(user.teamId);
     return NextResponse.json(data);
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json(null);
   }
 }

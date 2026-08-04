@@ -20,6 +20,7 @@ export interface Team {
   leaderId: { _id: string; name: string; email: string };
   members: { _id: string; name: string; email: string; registrationNumber: string; department: string }[];
   projectTrack: string;
+  problemStatement: string;
   department: string;
   status: 'active' | 'submitted' | 'disqualified';
 }

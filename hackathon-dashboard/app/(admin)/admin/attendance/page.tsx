@@ -34,9 +34,11 @@ export default function AttendancePage() {
   }, []);
 
   const filtered = records.filter(r => {
+    const userName = r.user?.name || '';
+    const regNum = r.user?.registrationNumber || '';
     const matchesSearch =
-      r.user?.name?.toLowerCase().includes(search.toLowerCase()) ||
-      r.user?.registrationNumber?.toLowerCase().includes(search.toLowerCase());
+      userName.toLowerCase().includes(search.toLowerCase()) ||
+      regNum.toLowerCase().includes(search.toLowerCase());
     const matchesRound = filterRound === 'All' || r.round === filterRound;
     return matchesSearch && matchesRound;
   });
@@ -127,11 +129,11 @@ export default function AttendancePage() {
                   <tr key={r._id} className="text-sm hover:bg-white/3 transition-colors">
                     <td className="px-6 py-4">
                       <div>
-                        <p className="font-medium text-white">{r.user?.name}</p>
-                        <p className="text-xs text-slate-500">{r.user?.department}</p>
+                        <p className="font-medium text-white">{r.user?.name || 'Unknown User'}</p>
+                        <p className="text-xs text-slate-500">{r.user?.department || r.user || '—'}</p>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-300 font-mono">{r.user?.registrationNumber}</td>
+                    <td className="px-6 py-4 text-slate-300 font-mono">{r.user?.registrationNumber || '—'}</td>
                     <td className="px-6 py-4">
                       <span className="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20 font-medium">
                         {r.round}

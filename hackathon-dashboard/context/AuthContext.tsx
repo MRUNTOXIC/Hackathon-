@@ -26,12 +26,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refresh = async () => {
+    // Add a safety timeout to prevent getting stuck in loading state
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Auth refresh timeout')), 8000)
+    );
+
     try {
-      const { data } = await api.get('/auth/me');
+      const { data } = await Promise.race([
+        api.get('/auth/me'),
+        timeout
+      ]) as any;
       setAndCache(data);
-    } catch {
+    } catch (err: any) {
+      console.warn('Auth refresh failed or timed out:', err.message);
       // Only clear cache if the error is definitely an auth failure (401)
       // This prevents logging out on transient network errors
+      if (err.response?.status === 401) {
+        setAndCache(null);
+      }
     } finally {
       setLoading(false);
     }

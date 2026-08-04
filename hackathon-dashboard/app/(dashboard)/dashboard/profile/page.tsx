@@ -31,13 +31,21 @@ export default function ProfilePage() {
 
   useEffect(() => {
     api.get('/dashboard/profile').then(({ data }) => {
-      setProfile(data);
-      reset({ name: data.name, phone: data.phone, department: data.department, year: data.year });
+      if (data) {
+        setProfile(data);
+        reset({
+          name: data.name || '',
+          phone: data.phone || '',
+          department: data.department || '',
+          year: data.year || ''
+        });
+      }
     });
   }, [reset]);
 
   const onSubmit = async (data: FormData) => {
-    await api.put('/dashboard/profile', data);
+    const { data: updatedProfile } = await api.put('/dashboard/profile', data);
+    setProfile(updatedProfile);
     await refresh();
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);

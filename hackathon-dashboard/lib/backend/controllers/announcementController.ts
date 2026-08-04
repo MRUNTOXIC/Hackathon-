@@ -2,7 +2,7 @@ import Announcement from '../models/Announcement';
 
 const isConnectionError = (error: any) => {
   const message = error?.message || error?.toString() || '';
-  return /authentication|bad auth|ECONN|ENOTFOUND|topology|connect/i.test(message);
+  return /authentication|bad auth|ECONN|ENOTFOUND|topology|connect|buffering timed out|buffering|timed out|MONGO_URI|operation/i.test(message);
 };
 
 export const getAnnouncements = async () => {
