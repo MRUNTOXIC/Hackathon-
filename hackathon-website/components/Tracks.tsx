@@ -1,6 +1,6 @@
 "use client";
 import { motion, useMotionValue, useSpring, useInView } from "framer-motion";
-import { Brain, Shield, Cpu, Satellite, Rocket, Globe, Zap, Star } from "lucide-react";
+import { Brain, Cpu, Gamepad2, Globe, BarChart2, Wifi } from "lucide-react";
 import { useRef, useState } from "react";
 
 const TRACKS = [
@@ -9,84 +9,72 @@ const TRACKS = [
     icon: Brain,
     accentColor: "#06b6d4",
     accentRgb: "6,182,212",
-    title: "Smart Traffic Prediction",
-    desc: "Build an AI model to predict traffic congestion and optimize real-time traffic flow in urban cities.",
+    title: "AI & Machine Learning",
+    desc: "Build any project that leverages artificial intelligence or machine learning — from predictive models and NLP tools to computer vision systems and smart automation.",
     category: "AI & ML",
-    difficulty: "HARD",
-    difficultyColor: "#ef4444",
-    prize: "₹15,000",
     skills: ["Python", "TensorFlow", "Data Analysis"],
-    participants: "40+",
+    tag: "🧠 NEURAL FRONTIER",
+    stat: "Accuracy > Impact",
   },
   {
     id: "02",
-    icon: Shield,
+    icon: Wifi,
     accentColor: "#a855f7",
     accentRgb: "168,85,247",
-    title: "Phishing Detection System",
-    desc: "Design a system to detect and prevent phishing attacks using ML and behavioral analysis.",
-    category: "CYBERSECURITY",
-    difficulty: "MEDIUM",
-    difficultyColor: "#f59e0b",
-    prize: "₹10,000",
-    skills: ["ML", "Security", "Node.js"],
-    participants: "35+",
+    title: "Internet of Things",
+    desc: "Design any IoT solution using simulation — smart home devices, industrial sensors, connected agriculture, health monitoring, or anything in between.",
+    category: "IoT [SIMULATION]",
+    skills: ["Wokwi", "MQTT", "Arduino"],
+    tag: "📡 CONNECTED WORLD",
+    stat: "Physical meets Digital",
   },
   {
     id: "03",
     icon: Cpu,
     accentColor: "#f97316",
     accentRgb: "249,115,22",
-    title: "Autonomous Delivery Bot",
-    desc: "Develop an autonomous delivery robot capable of navigating complex environments safely.",
-    category: "ROBOTICS",
-    difficulty: "EXPERT",
-    difficultyColor: "#ef4444",
-    prize: "₹20,000",
-    skills: ["ROS", "C++", "Sensors"],
-    participants: "25+",
+    title: "Robotics",
+    desc: "Simulate any robotic system — autonomous navigation, robotic arms, delivery bots, or search-and-rescue robots. Creativity in problem-solving is the only limit.",
+    category: "ROBOTICS [SIMULATION]",
+    skills: ["ROS", "Gazebo", "Python"],
+    tag: "🤖 AUTONOMOUS ERA",
+    stat: "Code that moves",
   },
   {
     id: "04",
-    icon: Satellite,
-    accentColor: "#3b82f6",
-    accentRgb: "59,130,246",
-    title: "Satellite Image Analysis",
-    desc: "Analyze satellite imagery to detect land use changes and environmental impacts.",
-    category: "SPACE TECH",
-    difficulty: "MEDIUM",
-    difficultyColor: "#f59e0b",
-    prize: "₹12,000",
-    skills: ["Computer Vision", "GIS", "Python"],
-    participants: "30+",
+    icon: Gamepad2,
+    accentColor: "#ec4899",
+    accentRgb: "236,72,153",
+    title: "Game Development",
+    desc: "Create any game you can imagine — 2D platformers, puzzle games, educational games, or immersive 3D experiences. Any genre, any engine, any theme.",
+    category: "GAME DEVELOPMENT",
+    skills: ["Unity", "Godot", "Unreal"],
+    tag: "🎮 INFINITE WORLDS",
+    stat: "Play is serious work",
   },
   {
     id: "05",
-    icon: Rocket,
-    accentColor: "#ec4899",
-    accentRgb: "236,72,153",
-    title: "Hybrid Rocket Optimization",
-    desc: "Optimize the design of hybrid rocket engines for better performance and efficiency.",
-    category: "PROPULSION",
-    difficulty: "EXPERT",
-    difficultyColor: "#ef4444",
-    prize: "₹18,000",
-    skills: ["Physics", "CAD", "Simulation"],
-    participants: "20+",
-  },
-  {
-    id: "06",
     icon: Globe,
     accentColor: "#22c55e",
     accentRgb: "34,197,94",
-    title: "Carbon Footprint Calculator",
-    desc: "Create a platform to calculate and reduce carbon footprint for individuals and organizations.",
-    category: "CLIMATE",
-    difficulty: "EASY",
-    difficultyColor: "#22c55e",
-    prize: "₹8,000",
-    skills: ["Web Dev", "Data Viz", "APIs"],
-    participants: "50+",
+    title: "Web Development",
+    desc: "Build any web application — a productivity tool, social platform, e-commerce site, portfolio, or something entirely new. Frontend, backend, or full-stack.",
+    category: "WEB DEVELOPMENT",
+    skills: ["React", "Node.js", "Databases"],
+    tag: "🌐 OPEN TO ALL",
+    stat: "Ship it in 12 hrs",
+  },
+  {
+    id: "06",
+    icon: BarChart2,
+    accentColor: "#3b82f6",
+    accentRgb: "59,130,246",
+    title: "Data Science",
+    desc: "Explore any dataset and tell a compelling story — build dashboards, uncover insights, forecast trends, or develop data-driven tools that solve real problems.",
+    category: "DATA SCIENCE",
+    skills: ["Python", "Pandas", "Visualization"],
+    tag: "📊 DATA SPEAKS",
+    stat: "Insight over noise",
   },
 ];
 
@@ -236,24 +224,22 @@ function TrackCard({ track, index }: { track: (typeof TRACKS)[0]; index: number 
         {/* Divider */}
         <div style={{ height: 1, background: `rgba(${track.accentRgb}, 0.15)` }} />
 
-        {/* Bottom: difficulty + prize */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <Zap size={12} style={{ color: track.difficultyColor }} />
-              <span style={{ fontSize: 11, fontWeight: 700, fontFamily: "monospace", color: track.difficultyColor }}>
-                {track.difficulty}
-              </span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <Star size={12} style={{ color: "rgba(255,255,255,0.35)" }} />
-              <span style={{ fontSize: 11, fontFamily: "monospace", color: "rgba(255,255,255,0.45)" }}>
-                {track.participants} teams
-              </span>
-            </div>
-          </div>
-          <span style={{ fontSize: 15, fontWeight: 900, fontFamily: "monospace", color: track.accentColor }}>
-            {track.prize}
+        {/* Bottom: mission tag + stat */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+          <span style={{
+            fontSize: 10, fontWeight: 700, fontFamily: "monospace",
+            color: track.accentColor,
+            letterSpacing: "0.08em",
+          }}>
+            {track.tag}
+          </span>
+          <span style={{
+            fontSize: 10, fontFamily: "monospace",
+            color: "rgba(255,255,255,0.3)",
+            letterSpacing: "0.05em",
+            whiteSpace: "nowrap",
+          }}>
+            {track.stat}
           </span>
         </div>
 
