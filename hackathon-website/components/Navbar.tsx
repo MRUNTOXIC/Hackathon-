@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import logo from "../app/image.png";
+import lLogo from "../app/l.png";
 
 const NAV_LINKS = [
   { label: "HOME", href: "#home" },
@@ -81,11 +84,35 @@ export default function Navbar({ show, onRegisterClick }: { show: boolean; onReg
         }}
       >
         {/* Logo - Aligned with left content column */}
-        <div className="flex-1 flex justify-start items-center">
-          <a href="#home" className="group" onClick={() => setMenuOpen(false)}>
-            <span className="text-[18px] font-black tracking-[6px] text-white transition-opacity duration-300 group-hover:opacity-80">
-              Commit Code
-            </span>
+        <div className="flex-1 flex justify-start items-center gap-3 pl-4">
+          <a href="#home" className="group flex items-center gap-3" onClick={() => setMenuOpen(false)}>
+            {/* image.png */}
+            <Image
+              src={logo}
+              alt="Comet Code"
+              width={59}
+              height={59}
+              className="object-contain transition-opacity duration-300 group-hover:opacity-80 rounded-full"
+              priority
+            />
+
+            {/* Divider */}
+            <div style={{
+              width: 1,
+              height: 36,
+              background: "rgba(255,255,255,0.25)",
+              flexShrink: 0,
+            }} />
+
+            {/* L.png */}
+            <Image
+              src={lLogo}
+              alt="L"
+              width={48}
+              height={48}
+              className="object-contain transition-opacity duration-300 group-hover:opacity-80"
+              priority
+            />
           </a>
         </div>
 

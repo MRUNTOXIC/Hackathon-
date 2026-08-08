@@ -4,16 +4,16 @@ import { motion, useInView } from "framer-motion";
 import gsap from "gsap";
 
 const MISSION_STATS = [
-  { value: 24,    label: "DURATION",     unit: "HRS",  prefix: "" },
+  { value: 12,    label: "DURATION",     unit: "HRS",  prefix: "" },
   { value: 500,   label: "PARTICIPANTS", unit: "",     prefix: "" },
   { value: 6,     label: "TRACKS",       unit: "",     prefix: "" },
-  { value: 100000,label: "PRIZE POOL",   unit: "",     prefix: "₹" },
+  { value: 20000, label: "PRIZE POOL",   unit: "",     prefix: "₹" },
 ];
 
 const TERMINAL_CODE = [
   { line: 1, text: "const mission = {" },
   { line: 2, text: "  objective: \"Build the future\",", isString: true, strVal: "\"Build the future\"" },
-  { line: 3, text: "  duration: \"24 Hours\",",           isString: true, strVal: "\"24 Hours\"" },
+  { line: 3, text: "  duration: \"12 Hours\",",           isString: true, strVal: "\"12 Hours\"" },
   { line: 4, text: "  participants: 500,",               isNum: true,    numVal: "500" },
   { line: 5, text: "  sectors: 6",                       isNum: true,    numVal: "6" },
   { line: 6, text: "}" },
@@ -200,7 +200,7 @@ export default function MissionOverview() {
               transition={{ duration: 0.7 }}
               style={{ fontSize: 14, color: "rgba(255,255,255,0.45)", lineHeight: 1.8, marginBottom: 48, fontFamily: "sans-serif", letterSpacing: "0.02em" }}
             >
-              A 24-hour sprint to build the future. Join 500+ innovators tackling real-world challenges across 6 cutting-edge tracks. The mission starts March 14, 2026.
+              A 12-hour sprint to build the future. Join 500+ innovators tackling real-world challenges across 6 cutting-edge tracks. The mission starts March 14, 2026.
             </motion.p>
 
             {/* Stats grid */}

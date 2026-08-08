@@ -159,7 +159,7 @@ export default function Hero({
           { label: "MISSION STATUS", value: "GO FOR LAUNCH" },
           { label: "TEAM COUNT", value: "120" },
           { label: "PARTICIPANTS", value: "500" },
-          { label: "PRIZE POOL", value: "₹1,00,000" },
+          { label: "PRIZE POOL", value: "₹20,000" },
         ].map((item) => (
           <div key={item.label} className="flex flex-col gap-1">
             <span className="text-[10px] tracking-[0.45em] text-white/30 uppercase font-medium">{item.label}</span>
@@ -206,7 +206,7 @@ export default function Hero({
               WebkitTextFillColor: "transparent",
             }}
           >
-          COMMIT<br />CODE
+          COMET<br />CODE
           </motion.h1>
         </div>
 
@@ -217,7 +217,7 @@ export default function Hero({
           transition={{ duration: 1, delay: 1.1 }}
           className="text-[16px] md:text-[20px] tracking-[0.25em] text-[#80c8ff] font-medium uppercase mb-16 font-orbitron"
         >
-          24 HOURS. INFINITE POSSIBILITIES.
+          12 HOURS. INFINITE POSSIBILITIES.
         </motion.p>
 
         {/* Countdown */}

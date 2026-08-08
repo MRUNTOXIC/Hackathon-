@@ -6,7 +6,7 @@ const PRIZE_DETAILS = [
   {
     rank: "01",
     label: "CHAMPION",
-    value: "₹50,000",
+    value: "₹10,000",
     color: "#facc15",
     rgb: "250,204,21",
     desc: "Best overall project across all tracks",
@@ -14,18 +14,18 @@ const PRIZE_DETAILS = [
   {
     rank: "02",
     label: "RUNNER UP",
-    value: "₹30,000",
+    value: "₹6,000",
     color: "#94a3b8",
     rgb: "148,163,184",
     desc: "Second best project across all tracks",
   },
   {
     rank: "03",
-    label: "SPECIAL AWARDS",
-    value: "₹20,000",
+    label: "SECOND RUNNER UP",
+    value: "₹4,000",
     color: "#f97316",
     rgb: "249,115,22",
-    desc: "Best in individual track categories",
+    desc: "Third best project across all tracks",
   },
 ];
 
@@ -244,7 +244,7 @@ export default function Prizes() {
             textAlign: "center",
           }}
         >
-          <Counter target={100000} run={run} />
+          <Counter target={20000} run={run} />
 
           {/* Reflection */}
           <div style={{

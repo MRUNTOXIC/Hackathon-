@@ -6,7 +6,7 @@ const FAQS = [
   { q: "Who can participate?",           a: "Any student or professional aged 18+ can participate. Teams of 2–4 members are recommended, but solo entries are accepted." },
   { q: "Is it free to register?",        a: "Yes, registration is completely free. All participants will receive access to mentors, workshops, and resources." },
   { q: "What should I bring?",           a: "Bring your laptop, charger, and any hardware you plan to use. Food and beverages will be provided throughout the event." },
-  { q: "Can I start coding beforehand?", a: "No. All code must be written during the 24-hour hackathon window. Pre-existing libraries and frameworks are allowed." },
+  { q: "Can I start coding beforehand?", a: "No. All code must be written during the 12-hour hackathon window. Pre-existing libraries and frameworks are allowed." },
   { q: "How are projects judged?",       a: "Projects are evaluated on innovation, technical complexity, impact, and presentation quality by a panel of industry experts." },
   { q: "Will there be mentors?",         a: "Yes. Industry mentors from leading tech and space organizations will be available throughout the event for guidance." },
 ];

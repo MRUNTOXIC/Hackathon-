@@ -23,7 +23,7 @@ const EVENTS = [
     id: "03",
     date: "MAR 14, 2026",
     label: "Launch",
-    desc: "The 24-hour build cycle commences. T-00:00:00. Mission is live.",
+    desc: "The 12-hour build cycle commences. T-00:00:00. Mission is live.",
     tMinus: "T-00",
     isClimax: true,
   },

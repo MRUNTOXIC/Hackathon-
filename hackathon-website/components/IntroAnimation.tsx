@@ -151,7 +151,7 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
           initial={{ opacity: 0 }}
           animate={phase === "expand" ? { opacity: 0 } : phase !== "boot" ? { opacity: 1 } : {}}
           transition={{ delay: phase === "expand" ? 0 : 0.8, duration: 0.5 }}>
-          Commit Code 
+          Comet Code 
         </motion.text>
         <motion.text x={0} y={7} textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize={4.5} letterSpacing={4}
           initial={{ opacity: 0 }}
@@ -178,7 +178,7 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
       <div className="absolute top-12 left-12" style={{ fontFamily: "var(--font-orbitron)" }}>
         <motion.div className="flex items-center gap-2 text-[11px] tracking-widest text-white/40"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
-          <span>&gt; COMMIT INITIALIZING</span>
+          <span>&gt; COMET INITIALIZING</span>
           <motion.span className="inline-block w-2 h-3 bg-white/60"
             animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 0.7 }} />
         </motion.div>
