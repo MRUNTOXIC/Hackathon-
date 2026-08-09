@@ -9,7 +9,7 @@ export default function TeamList() {
   const params = useParams();
   const router = useRouter();
   const roundRaw = params.round as string;
-  const roundName = roundRaw.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const roundName = roundRaw.replaceAll('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   const [teams, setTeams] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

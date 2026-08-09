@@ -73,4 +73,4 @@ export default function JudgeWelcome() {
       </div>
     </div>
   );
-}ß
+}

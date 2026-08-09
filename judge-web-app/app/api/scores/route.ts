@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    // Prevent duplicate reviews for the same team in the same round
-    const existing = await JudgeScore.findOne({ team: teamId, round });
+    // Prevent duplicate reviews for the same judge + team + round combination
+    const existing = await JudgeScore.findOne({ team: teamId, round, judgeName });
     if (existing) {
       return NextResponse.json({
         message: `Team has already been reviewed for ${round} by ${existing.judgeName}`

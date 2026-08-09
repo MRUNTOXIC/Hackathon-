@@ -7,8 +7,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
-};
-module.exports = {
   allowedDevOrigins: ['192.168.1.100'],
-}
+};
+
 export default nextConfig;

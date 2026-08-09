@@ -72,7 +72,7 @@ export default function RoundSelection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.1 }}
-            onClick={() => router.push(`/rounds/${round.id.replace(' ', '-').toLowerCase()}`)}
+            onClick={() => router.push(`/rounds/${round.id.replaceAll(' ', '-').toLowerCase()}`)}
             className={`group text-left p-6 rounded-3xl bg-gradient-to-br border ${round.color} ${round.border} hover:scale-[1.02] active:scale-[0.98] transition-all`}
           >
             <div className="flex items-start justify-between">

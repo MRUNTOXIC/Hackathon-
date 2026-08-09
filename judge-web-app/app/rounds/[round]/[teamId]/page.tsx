@@ -19,7 +19,7 @@ export default function EvaluationForm() {
   const router = useRouter();
   const teamId = params.teamId as string;
   const roundRaw = params.round as string;
-  const roundName = roundRaw.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const roundName = roundRaw.replaceAll('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   const [team, setTeam] = useState<any>(null);
   const [loading, setLoading] = useState(true);
