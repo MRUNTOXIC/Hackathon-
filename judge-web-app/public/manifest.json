@@ -1,0 +1,16 @@
+{
+  "name": "Judge Portal - Hackathon",
+  "short_name": "Judge Portal",
+  "description": "Evaluation panel for Hackathon Judges",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/icons/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

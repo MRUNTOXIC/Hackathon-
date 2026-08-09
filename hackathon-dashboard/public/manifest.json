@@ -1,0 +1,21 @@
+{
+  "name": "HackDash - Hackathon Management",
+  "short_name": "HackDash",
+  "description": "Dashboard for Hackathon participants and organizers",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
