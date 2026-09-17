@@ -16,6 +16,7 @@ interface AuthContextType {
   verifyRegOtp: (email: string, code: string) => Promise<string>; // returns a short-lived verified token
   // Forgot / reset password
   sendResetOtp: (email: string) => Promise<void>;
+  verifyResetOtp: (email: string, code: string) => Promise<void>;
   resetPassword: (email: string, code: string, newPassword: string) => Promise<void>;
 }
 
@@ -88,13 +89,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await api.post('/auth/forgot-password', { email });
   };
 
+  /** Check a reset OTP is correct without consuming it */
+  const verifyResetOtp = async (email: string, code: string) => {
+    await api.post('/auth/verify-reset-otp', { email, code });
+  };
+
   /** Verify OTP + set new password in one call */
   const resetPassword = async (email: string, code: string, newPassword: string) => {
     await api.post('/auth/reset-password', { email, code, newPassword });
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, refresh, sendRegOtp, verifyRegOtp, sendResetOtp, resetPassword }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, refresh, sendRegOtp, verifyRegOtp, sendResetOtp, verifyResetOtp, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );

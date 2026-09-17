@@ -27,7 +27,7 @@ type PasswordData = z.infer<typeof passwordSchema>;
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
-  const { sendResetOtp, resetPassword } = useAuth();
+  const { sendResetOtp, verifyResetOtp, resetPassword } = useAuth();
 
   type Step = 'email' | 'otp' | 'newpassword' | 'done';
   const [step, setStep] = useState<Step>('email');
@@ -83,10 +83,14 @@ export default function ForgotPasswordPage() {
     if (otpCode.length !== 6) { setError('Enter the full 6-digit code'); return; }
     setError('');
     setOtpLoading(true);
-    // We just move forward — the actual OTP is verified when the new password is submitted
-    // (the reset-password route does the check atomically)
-    setOtpLoading(false);
-    setStep('newpassword');
+    try {
+      await verifyResetOtp(pendingEmail, otpCode);
+      setStep('newpassword');
+    } catch {
+      setError('Wrong OTP');
+    } finally {
+      setOtpLoading(false);
+    }
   };
 
   // ── Step 3: New password ───────────────────────────────────────────────

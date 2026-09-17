@@ -105,7 +105,7 @@ export default function RegisterLeaderPage() {
       setVerifiedToken(token);
       setStep('form');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'OTP verification failed');
+      setError('Wrong OTP');
     } finally {
       setOtpLoading(false);
     }
