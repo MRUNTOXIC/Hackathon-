@@ -15,21 +15,15 @@ api.interceptors.response.use(
     }
 
     const url = err.config?.url ?? '';
-    const isAuthCheck =
-      url.includes('/auth/me') ||
-      url.includes('/auth/login') ||
-      url.includes('/auth/register') ||
-      url.includes('/auth/verify') ||
-      url.includes('/auth/forgot') ||
-      url.includes('/auth/reset') ||
-      url.includes('/auth/send');
+    // Never redirect to login for any auth-related route or special routes
+    const isAuthRoute = url.includes('/auth/');
     const isReveal = url.includes('/internet/reveal');
     const isAdminRoute = url.includes('/admin');
 
     // Redirect to login only for 401s on user-facing routes
     if (
       err.response?.status === 401 &&
-      !isAuthCheck &&
+      !isAuthRoute &&
       !isReveal &&
       !isAdminRoute &&
       typeof window !== 'undefined'
