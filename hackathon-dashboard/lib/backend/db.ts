@@ -15,6 +15,7 @@ import './models/Submission';
 import './models/Attendance';
 import './models/JudgeScore';
 import './models/Admin';
+import './models/OTP';
 
 /**
  * Global is used here to maintain a cached connection across hot reloads

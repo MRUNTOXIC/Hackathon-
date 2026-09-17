@@ -6,10 +6,17 @@ import { User } from '@/types';
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  // Standard login (no OTP)
   login: (email: string, password: string) => Promise<void>;
   register: (endpoint: string, payload: Record<string, string>) => Promise<void>;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
+  // Registration OTP — verify email before account creation
+  sendRegOtp: (email: string) => Promise<void>;
+  verifyRegOtp: (email: string, code: string) => Promise<string>; // returns a short-lived verified token
+  // Forgot / reset password
+  sendResetOtp: (email: string) => Promise<void>;
+  resetPassword: (email: string, code: string, newPassword: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -26,37 +33,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refresh = async () => {
-    // Add a safety timeout to prevent getting stuck in loading state
     const timeout = new Promise((_, reject) =>
       setTimeout(() => reject(new Error('Auth refresh timeout')), 8000)
     );
-
     try {
-      const { data } = await Promise.race([
-        api.get('/auth/me'),
-        timeout
-      ]) as any;
+      const { data } = await Promise.race([api.get('/auth/me'), timeout]) as any;
       setAndCache(data);
     } catch (err: any) {
       console.warn('Auth refresh failed or timed out:', err.message);
-      // Only clear cache if the error is definitely an auth failure (401)
-      // This prevents logging out on transient network errors
-      if (err.response?.status === 401) {
-        setAndCache(null);
-      }
+      if (err.response?.status === 401) setAndCache(null);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    // Read cache on client only after mount to avoid hydration mismatch
     try {
       const cached = localStorage.getItem(CACHE_KEY);
-      if (cached) {
-        setUser(JSON.parse(cached));
-        setLoading(false); // We have a user, show UI immediately
-      }
+      if (cached) { setUser(JSON.parse(cached)); setLoading(false); }
     } catch {}
     refresh();
   }, []);
@@ -76,8 +70,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAndCache(null);
   };
 
+  // ── Registration OTP ──────────────────────────────────────────────────────
+  /** Step 1: send a verification OTP to the email (must not already be registered) */
+  const sendRegOtp = async (email: string) => {
+    await api.post('/auth/send-reg-otp', { email });
+  };
+
+  /** Step 2: verify the OTP — server returns a short-lived verifiedToken the register route checks */
+  const verifyRegOtp = async (email: string, code: string): Promise<string> => {
+    const { data } = await api.post('/auth/verify-reg-otp', { email, code });
+    return data.verifiedToken as string;
+  };
+
+  // ── Forgot / Reset password ───────────────────────────────────────────────
+  /** Send a reset OTP to a registered email */
+  const sendResetOtp = async (email: string) => {
+    await api.post('/auth/forgot-password', { email });
+  };
+
+  /** Verify OTP + set new password in one call */
+  const resetPassword = async (email: string, code: string, newPassword: string) => {
+    await api.post('/auth/reset-password', { email, code, newPassword });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, refresh }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, refresh, sendRegOtp, verifyRegOtp, sendResetOtp, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );

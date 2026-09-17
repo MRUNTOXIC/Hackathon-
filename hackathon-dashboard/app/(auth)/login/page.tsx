@@ -49,10 +49,7 @@ export default function LoginPage() {
 
       <div className="glass-strong rounded-2xl p-8 animate-fadein">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(onSubmit)(e);
-          }}
+          onSubmit={(e) => { e.preventDefault(); handleSubmit(onSubmit)(e); }}
           method="POST"
           noValidate
           className="space-y-4"
@@ -64,10 +61,15 @@ export default function LoginPage() {
         </form>
       </div>
 
-      <p className="text-center text-slate-500 text-sm mt-6">
-        Don&apos;t have an account?{' '}
-        <Link href="/register" className="text-cyan-400 hover:text-cyan-300 font-medium">Register</Link>
-      </p>
+      <div className="flex items-center justify-between mt-4 px-1">
+        <p className="text-slate-500 text-sm">
+          Don&apos;t have an account?{' '}
+          <Link href="/register" className="text-cyan-400 hover:text-cyan-300 font-medium">Register</Link>
+        </p>
+        <Link href="/forgot-password" className="text-sm text-slate-500 hover:text-cyan-400 transition-colors">
+          Forgot password?
+        </Link>
+      </div>
     </div>
   );
 }
