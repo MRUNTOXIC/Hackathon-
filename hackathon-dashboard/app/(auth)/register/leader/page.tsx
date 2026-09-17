@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import OtpInput from '@/components/ui/OtpInput';
+import OtpInput, { OtpInputHandle } from '@/components/ui/OtpInput';
 import { Crown, Mail, RefreshCw } from 'lucide-react';
 
 // ── Step 1 schema: just email ─────────────────────────────────────────────
@@ -50,6 +50,7 @@ export default function RegisterLeaderPage() {
   const [pendingEmail, setPendingEmail] = useState('');
   const [verifiedToken, setVerifiedToken] = useState('');
   const [otpCode, setOtpCode] = useState('');
+  const otpRef = useRef<OtpInputHandle>(null);
   const [cooldown, setCooldown] = useState(0);
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [error, setError] = useState('');
@@ -88,7 +89,7 @@ export default function RegisterLeaderPage() {
     try {
       setError('');
       await sendRegOtp(pendingEmail);
-      setOtpCode('');
+      otpRef.current?.reset();
       startCooldown();
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to resend OTP');
@@ -185,7 +186,7 @@ export default function RegisterLeaderPage() {
               </p>
             </div>
 
-            <OtpInput onChange={setOtpCode} />
+            <OtpInput ref={otpRef} onChange={setOtpCode} />
 
             {error && (
               <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-2 text-center">

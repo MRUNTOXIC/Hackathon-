@@ -1,20 +1,29 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, forwardRef, useImperativeHandle } from 'react';
+
+export interface OtpInputHandle {
+  reset: () => void;
+}
 
 interface OtpInputProps {
   onChange: (code: string) => void;
-  onPasteCapture?: React.ClipboardEventHandler<HTMLDivElement>;
 }
 
-/**
- * Six individual digit boxes.
- * Calls onChange(fullCode) on every keystroke / paste.
- */
-export default function OtpInput({ onChange }: OtpInputProps) {
+const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({ onChange }, ref) => {
   const digitRefs = useRef<Array<HTMLInputElement | null>>([null, null, null, null, null, null]);
   const digits = useRef<string[]>(['', '', '', '', '', '']);
 
   const sync = () => onChange(digits.current.join(''));
+
+  // Expose reset() so parent pages can clear the boxes on resend
+  useImperativeHandle(ref, () => ({
+    reset() {
+      digits.current = ['', '', '', '', '', ''];
+      digitRefs.current.forEach((el) => { if (el) el.value = ''; });
+      onChange('');
+      digitRefs.current[0]?.focus();
+    },
+  }));
 
   const handleChange = (i: number, val: string) => {
     const ch = val.replace(/\D/g, '').slice(-1);
@@ -70,4 +79,7 @@ export default function OtpInput({ onChange }: OtpInputProps) {
       ))}
     </div>
   );
-}
+});
+
+OtpInput.displayName = 'OtpInput';
+export default OtpInput;
