@@ -18,7 +18,11 @@ api.interceptors.response.use(
     const isAuthCheck =
       url.includes('/auth/me') ||
       url.includes('/auth/login') ||
-      url.includes('/auth/register');
+      url.includes('/auth/register') ||
+      url.includes('/auth/verify') ||
+      url.includes('/auth/forgot') ||
+      url.includes('/auth/reset') ||
+      url.includes('/auth/send');
     const isReveal = url.includes('/internet/reveal');
     const isAdminRoute = url.includes('/admin');
 
