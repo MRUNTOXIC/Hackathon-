@@ -101,7 +101,8 @@ export default function RegisterMemberPage() {
       setVerifiedToken(token);
       setStep('form');
     } catch (err: any) {
-      setError('Wrong OTP');
+      setError('Incorrect OTP. Please re-enter.');
+      otpRef.current?.reset();
     } finally {
       setOtpLoading(false);
     }

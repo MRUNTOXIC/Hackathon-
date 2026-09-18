@@ -88,7 +88,8 @@ export default function ForgotPasswordPage() {
       await verifyResetOtp(pendingEmail, otpCode);
       setStep('newpassword');
     } catch {
-      setError('Wrong OTP');
+      setError('Incorrect OTP. Please re-enter.');
+      otpRef.current?.reset();
     } finally {
       setOtpLoading(false);
     }
