@@ -6,6 +6,21 @@ const api = axios.create({
   timeout: 30000, // 30s — MongoDB Atlas cold starts can take 5-15s
 });
 
+// Routes that are allowed to return 401 without triggering a redirect to /login
+const AUTH_ROUTE_PATTERNS = [
+  '/auth/login',
+  '/auth/register',
+  '/auth/me',
+  '/auth/logout',
+  '/auth/send-reg-otp',
+  '/auth/verify-reg-otp',
+  '/auth/forgot-password',
+  '/auth/verify-reset-otp',
+  '/auth/reset-password',
+  '/auth/send-otp',
+  '/auth/verify-otp',
+];
+
 api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -14,21 +29,17 @@ api.interceptors.response.use(
       console.error('API Request Timeout:', err.config?.url);
     }
 
-    const url = err.config?.url ?? '';
-    // Never redirect to login for any auth-related route or special routes
-    const isAuthRoute = url.includes('/auth/');
-    const isReveal = url.includes('/internet/reveal');
-    const isAdminRoute = url.includes('/admin');
+    if (err.response?.status === 401 && typeof window !== 'undefined') {
+      const url: string = err.config?.url ?? '';
 
-    // Redirect to login only for 401s on user-facing routes
-    if (
-      err.response?.status === 401 &&
-      !isAuthRoute &&
-      !isReveal &&
-      !isAdminRoute &&
-      typeof window !== 'undefined'
-    ) {
-      window.location.href = '/login';
+      const isAuthRoute = AUTH_ROUTE_PATTERNS.some((pattern) => url.includes(pattern));
+      const isReveal = url.includes('/internet/reveal');
+      const isAdminRoute = url.includes('/admin');
+
+      // Only redirect to login for protected app routes, never for auth/OTP routes
+      if (!isAuthRoute && !isReveal && !isAdminRoute) {
+        window.location.href = '/login';
+      }
     }
 
     return Promise.reject(err);

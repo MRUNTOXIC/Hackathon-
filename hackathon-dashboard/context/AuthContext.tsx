@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import axios from 'axios';
 import api from '@/lib/api';
 import { User } from '@/types';
 
@@ -74,29 +75,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // ── Registration OTP ──────────────────────────────────────────────────────
   /** Step 1: send a verification OTP to the email (must not already be registered) */
   const sendRegOtp = async (email: string) => {
-    await api.post('/auth/send-reg-otp', { email });
+    await axios.post('/api/auth/send-reg-otp', { email });
   };
 
   /** Step 2: verify the OTP — server returns a short-lived verifiedToken the register route checks */
   const verifyRegOtp = async (email: string, code: string): Promise<string> => {
-    const { data } = await api.post('/auth/verify-reg-otp', { email, code });
+    const { data } = await axios.post('/api/auth/verify-reg-otp', { email, code });
     return data.verifiedToken as string;
   };
 
   // ── Forgot / Reset password ───────────────────────────────────────────────
   /** Send a reset OTP to a registered email */
   const sendResetOtp = async (email: string) => {
-    await api.post('/auth/forgot-password', { email });
+    await axios.post('/api/auth/forgot-password', { email });
   };
 
   /** Check a reset OTP is correct without consuming it */
   const verifyResetOtp = async (email: string, code: string) => {
-    await api.post('/auth/verify-reset-otp', { email, code });
+    await axios.post('/api/auth/verify-reset-otp', { email, code });
   };
 
   /** Verify OTP + set new password in one call */
   const resetPassword = async (email: string, code: string, newPassword: string) => {
-    await api.post('/auth/reset-password', { email, code, newPassword });
+    await axios.post('/api/auth/reset-password', { email, code, newPassword });
   };
 
   return (
